@@ -4,8 +4,11 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 echo Installing Docker Repositories.
 
-apt-get update
-apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release cifs-utils
+
+#Add git repository to get the very latest version of git.
+#This will automatically update the apt database.
+add-apt-repository ppa:git-core/ppa
+apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release cifs-utils git
 
 file=/usr/share/keyrings/docker-archive-keyring.gpg
 if [ -f "$file" ]; then
